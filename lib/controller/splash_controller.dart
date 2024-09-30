@@ -10,7 +10,7 @@ class SplashController extends GetxController {
     super.onInit();
     // Navigate to the home page after 4 seconds
     Timer(Duration(seconds: 4), () {
-      Get.off(TashkilPage());
+      Get.off(()=>TashkilPage());
     });
   }
 }
