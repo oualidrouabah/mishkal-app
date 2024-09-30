@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mishkal/view/history_screen.dart';
 import 'package:mishkal/view/tashkil_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -63,11 +64,11 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {},
                         ),
                         StyledButton(
-                          icon: Icons.wb_incandescent_sharp, 
-                          text: "مشاريع اخرى", 
+                          icon: Icons.history, 
+                          text: "سجل", 
                           height: screenSize.height *0.2, 
                           width: screenSize.width *0.46, 
-                          onPressed: (){},
+                          onPressed: ()=>Get.to(()=>HistoryScreen()),
                         ),
                       ],
                     ),

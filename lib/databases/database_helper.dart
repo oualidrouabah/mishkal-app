@@ -54,4 +54,13 @@ class DatabaseHelper {
     final db = await database;
     return await db.query('history');
   }
+  Future<void> deleteText(String originalText) async {
+  final db = await database;
+  await db.delete(
+    'history',
+    where: 'original_text = ?',
+    whereArgs: [originalText],
+  );
+}
+
 }

@@ -79,7 +79,7 @@ class TashkilPage extends StatelessWidget {
               onPressed: () async {
                 if (textInputController.text.isNotEmpty) {
                   await tashkilController.fetchTashkil(textInputController.text);
-                  databaseController.addTextToHistory(textInputController.text, textInputController.text);
+                  databaseController.addTextToHistory(textInputController.text, tashkilController.tashkilText.value);
                   print(databaseController.history);
                 }
 
