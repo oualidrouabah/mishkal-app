@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mishkal/controller/tashkil_controller.dart';
 
-import '../controller/therme_controller.dart';
+import '../controller/theme_controller.dart';
 
 class TashkilPage extends StatelessWidget {
   final TextEditingController textInputController = TextEditingController();
