@@ -2,14 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mishkal/controller/database_controller.dart';
 import 'package:mishkal/controller/tashkil_controller.dart';
-
 import '../controller/theme_controller.dart';
+
 
 class TashkilPage extends StatelessWidget {
   final TextEditingController textInputController = TextEditingController();
   final ThemeController themeController = Get.put(ThemeController());
-  final TashkilController c = Get.put(TashkilController());
+  final TashkilController tashkilController = Get.put(TashkilController());
+  final DatabaseController databaseController=Get.put(DatabaseController());
 
   TashkilPage({super.key});
 
@@ -62,10 +64,10 @@ class TashkilPage extends StatelessWidget {
                     child: SelectableText.rich(
                       textAlign: TextAlign.right,
                       _buildTextWithTashkil(
-                        c.tashkilText.value,
-                        Theme.of(context).primaryColor,  // Base text color
-                        Colors.red,                      // Tashkil color
-                        screenSize.width * 0.08,          // Font size
+                        tashkilController.tashkilText.value,
+                        Theme.of(context).primaryColor,  
+                        Colors.red,                     
+                        screenSize.width * 0.08,         
                       ),
                     ),
                   ),
@@ -75,7 +77,13 @@ class TashkilPage extends StatelessWidget {
             // Button to fetch Tashkil
             IconButton(
               onPressed: () async {
-                await c.fetchTashkil(textInputController.text);
+                if (textInputController.text.isNotEmpty) {
+                  await tashkilController.fetchTashkil(textInputController.text);
+                  databaseController.addTextToHistory(textInputController.text, textInputController.text);
+                  print(databaseController.history);
+                }
+
+                
               },
               icon: Text(
                 'تشكيل',

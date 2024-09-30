@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:mishkal/view/splash_screen.dart';
 import 'package:mishkal/view/theme.dart';
 
-import 'controller/tashkil_controller.dart';
+
 
 void main() {
-  Get.put(TashkilController()); 
+
   runApp(const MyApp());
 }
 
