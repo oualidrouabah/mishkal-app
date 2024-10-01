@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../controller/database_controller.dart';
 
-
 class HistoryScreen extends StatelessWidget {
   HistoryScreen({super.key});
   final DatabaseController _controller = Get.put(DatabaseController());
@@ -22,19 +21,35 @@ class HistoryScreen extends StatelessWidget {
           itemCount: _controller.history.length,
           itemBuilder: (context, index) {
             final entry = _controller.history[index];
-            return ListTile(
-              isThreeLine: true,
-              title: Text(entry['original_text']!),
-              subtitle: Text(entry['tashkil_text']!),
-              onTap: () {
-                // Navigate to the detail screen when tapped
-                _showDetailDialog(entry);
-              },
-              trailing: IconButton(
-                icon: Icon(Icons.delete, color: Colors.red,),
-                onPressed: () {
-                  _showDeleteConfirmationDialog(entry['original_text']!);
+            return Container(
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16), // Margin around each box
+              padding: const EdgeInsets.all(12), // Padding inside the box
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor, // Light color for the box
+                borderRadius: BorderRadius.circular(10), // Rounded corners
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1), // Shadow for depth
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: ListTile(
+                isThreeLine: true,
+                title: Text(entry['original_text']!),
+                subtitle: Text(entry['tashkil_text']!),
+                onTap: () {
+                  // Navigate to the detail screen when tapped
+                  _showDetailDialog(entry);
                 },
+                trailing: IconButton(
+                  icon: Icon(Icons.delete, color: Colors.red,),
+                  onPressed: () {
+                    _showDeleteConfirmationDialog(entry['original_text']!);
+                  },
+                ),
               ),
             );
           },
