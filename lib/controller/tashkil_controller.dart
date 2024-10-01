@@ -6,7 +6,7 @@ class TashkilController extends GetxController {
   
   var tashkilText = ''.obs;
   // To store ordered lines from the API
-  var _tashkilResults = <int, String>{}; // Map to store the order and result lines
+  var _tashkilResults = <int, String>{}; 
 
   // Method to fetch Tashkil text (supporting multiple lines)
   Future<void> fetchTashkil(String text) async {
@@ -53,5 +53,9 @@ class TashkilController extends GetxController {
     var sortedEntries = _tashkilResults.entries.toList();
     sortedEntries.sort((a, b) => a.key.compareTo(b.key)); // Sort by order
     return sortedEntries.map((entry) => entry.value).join(' '); // Combine them into a single string
+  }
+
+  void clearText() {
+    tashkilText.value = ""; // Clear the text
   }
 }

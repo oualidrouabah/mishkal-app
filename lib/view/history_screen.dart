@@ -11,7 +11,7 @@ class HistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('تاريخ التشكيل'),
+        title: Text('سجل'),
       ),
       body: Obx(() {
         if (_controller.history.isEmpty) {

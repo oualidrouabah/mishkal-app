@@ -24,6 +24,16 @@ class TashkilPage extends StatelessWidget {
           'تشكيل النص',
           style: TextStyle(fontFamily: 'ArabicFont', fontSize: screenSize.width * 0.05),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.delete_forever_outlined),
+            color: ThemeController.clearButtonColor, 
+            onPressed: () {
+              textInputController.clear(); 
+              tashkilController.clearText();
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -43,34 +53,6 @@ class TashkilPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   hintText: 'أدخل النص هنا...',
-                  /*suffixIcon: Column(
-                    mainAxisSize: MainAxisSize.min, // To avoid extra space
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.delete_outline),
-                        color: ThemeController.clearButtonColor, // Using theme color for clear button
-                        onPressed: () {
-                          textInputController.clear(); // Clear the text field
-                        },
-                      ),
-                      Obx(()=> IconButton(
-                        icon: Icon(Icons.drive_folder_upload_outlined), // Use your OCR icon
-                        color: ThemeController.ocrButtonColor, // Using theme color for OCR button
-                        onPressed: () {
-                          // Add OCR action here
-                          print("Get text from picture action pressed");
-                        },
-                      )),      
-                      IconButton(
-                        icon: Icon(Icons.camera_alt_outlined),
-                        color: ThemeController.cameraButtonColor, // Using theme color for camera button
-                        onPressed: () {
-                          // Add camera action here
-                          print("Take picture action pressed");
-                        },
-                      ),
-                    ],
-                  ),*/
                 ),
               ),
             ),
@@ -84,7 +66,7 @@ class TashkilPage extends StatelessWidget {
                       _buildTextWithTashkil(
                         tashkilController.tashkilText.value,
                         Theme.of(context).primaryColor,  
-                        Colors.red,                     
+                        ThemeController.clearButtonColor,                     
                         screenSize.width * 0.08,         
                       ),
                     ),
@@ -98,10 +80,8 @@ class TashkilPage extends StatelessWidget {
                 if (textInputController.text.isNotEmpty) {
                   await tashkilController.fetchTashkil(textInputController.text);
                   databaseController.addTextToHistory(textInputController.text, tashkilController.tashkilText.value);
-                  print(databaseController.history);
+                  //print(databaseController.history);
                 }
-
-                
               },
               icon: Text(
                 'تشكيل',

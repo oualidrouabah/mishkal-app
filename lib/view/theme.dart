@@ -13,6 +13,7 @@ class MishkalTheme {
     brightness: Brightness.light,
     primaryColor: primaryColor,
     scaffoldBackgroundColor: lightBackgroundColor,
+    splashColor: lightBackgroundColor,
     colorScheme: ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
@@ -55,6 +56,7 @@ class MishkalTheme {
     brightness: Brightness.dark,
     primaryColor: primaryColor,
     scaffoldBackgroundColor: darkBackgroundColor,
+    splashColor: darkBackgroundColor,
     colorScheme: ColorScheme.dark(
       primary: primaryColor,
       secondary: secondaryColor,
