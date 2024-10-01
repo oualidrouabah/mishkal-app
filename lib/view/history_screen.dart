@@ -23,6 +23,7 @@ class HistoryScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             final entry = _controller.history[index];
             return ListTile(
+              isThreeLine: true,
               title: Text(entry['original_text']!),
               subtitle: Text(entry['tashkil_text']!),
               onTap: () {
@@ -32,7 +33,7 @@ class HistoryScreen extends StatelessWidget {
               trailing: IconButton(
                 icon: Icon(Icons.delete, color: Colors.red,),
                 onPressed: () {
-                  _showDeleteConfirmationDialog(context, entry['original_text']!);
+                  _showDeleteConfirmationDialog(entry['original_text']!);
                 },
               ),
             );
@@ -60,7 +61,7 @@ class HistoryScreen extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Get.back();
               },
               child: Text('إغلاق'),
             ),
@@ -70,9 +71,9 @@ class HistoryScreen extends StatelessWidget {
     );
   }
 
-  void _showDeleteConfirmationDialog(BuildContext context, String originalText) {
+  void _showDeleteConfirmationDialog(String originalText) {
     showDialog(
-      context: context,
+      context: Get.context!,
       builder: (context) {
         return AlertDialog(
           title: Text('تأكيد الحذف'),
@@ -82,13 +83,13 @@ class HistoryScreen extends StatelessWidget {
               onPressed: () {
                 // If user confirms, delete the entry
                 _controller.deleteTextFromHistory(originalText);
-                Navigator.of(context).pop(); // Close the dialog
+                Get.back();
               },
               child: Text('حذف'),
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog without deleting
+                Get.back();
               },
               child: Text('إلغاء'),
             ),

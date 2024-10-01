@@ -1,6 +1,6 @@
 // tashkil_controller.dart
 import 'package:get/get.dart';
-import '../databases/database_helper.dart';
+import '../databases/database.dart';
 
 class DatabaseController extends GetxController {
   var history = <Map<String, String>>[].obs; // Keep the type as String
@@ -29,16 +29,15 @@ class DatabaseController extends GetxController {
 
   Future<void> loadHistory() async {
     final List<Map<String, dynamic>> maps = await _databaseHelper.getHistory();
-    history.value = maps.map((map) => {
-      'original_text': map['original_text'] as String, // Cast to String
-      'tashkil_text': map['tashkil_text'] as String,   // Cast to String
-    }).toList(); // Convert to List<Map<String, String>>
+      history.value = maps.map((map) => {
+        'original_text': map['original_text'] as String, // Cast to String
+        'tashkil_text': map['tashkil_text'] as String,   // Cast to String
+      }).toList(); // Convert to List<Map<String, String>>
+    }
+    void deleteTextFromHistory(String originalText) {
+    // Remove from the in-memory list
+    history.removeWhere((entry) => entry['original_text'] == originalText);
+    // Remove from the database
+    _databaseHelper.deleteText(originalText);
   }
-  void deleteTextFromHistory(String originalText) {
-  // Remove from the in-memory list
-  history.removeWhere((entry) => entry['original_text'] == originalText);
-  // Remove from the database
-  _databaseHelper.deleteText(originalText);
-}
-
 }
