@@ -34,7 +34,8 @@ class DatabaseController extends GetxController {
         'tashkil_text': map['tashkil_text'] as String,   // Cast to String
       }).toList(); // Convert to List<Map<String, String>>
     }
-    void deleteTextFromHistory(String originalText) {
+  
+  void deleteTextFromHistory(String originalText) {
     // Remove from the in-memory list
     history.removeWhere((entry) => entry['original_text'] == originalText);
     // Remove from the database

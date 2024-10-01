@@ -8,6 +8,7 @@ class MishkalTheme {
   static final Color lightBackgroundColor = Colors.white;
   static final Color darkBackgroundColor = Color(0xFF121212);
 
+
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: primaryColor,

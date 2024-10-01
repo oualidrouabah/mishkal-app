@@ -43,6 +43,34 @@ class TashkilPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   hintText: 'أدخل النص هنا...',
+                  /*suffixIcon: Column(
+                    mainAxisSize: MainAxisSize.min, // To avoid extra space
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.delete_outline),
+                        color: ThemeController.clearButtonColor, // Using theme color for clear button
+                        onPressed: () {
+                          textInputController.clear(); // Clear the text field
+                        },
+                      ),
+                      Obx(()=> IconButton(
+                        icon: Icon(Icons.drive_folder_upload_outlined), // Use your OCR icon
+                        color: ThemeController.ocrButtonColor, // Using theme color for OCR button
+                        onPressed: () {
+                          // Add OCR action here
+                          print("Get text from picture action pressed");
+                        },
+                      )),      
+                      IconButton(
+                        icon: Icon(Icons.camera_alt_outlined),
+                        color: ThemeController.cameraButtonColor, // Using theme color for camera button
+                        onPressed: () {
+                          // Add camera action here
+                          print("Take picture action pressed");
+                        },
+                      ),
+                    ],
+                  ),*/
                 ),
               ),
             ),
