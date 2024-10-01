@@ -1,6 +1,7 @@
 // tashkil_controller.dart
 import 'package:get/get.dart';
 import '../databases/database.dart';
+import 'dart:developer' as dev;
 
 class DatabaseController extends GetxController {
   var history = <Map<String, String>>[].obs; // Keep the type as String
@@ -23,7 +24,7 @@ class DatabaseController extends GetxController {
       _databaseHelper.insertText(originalText, tashkilText);
     } else {
       // Optionally, you can show a message indicating that the text already exists
-      print("The original text already exists in the history.");
+      dev.log("The original text already exists in the history.");
     }
   }
 

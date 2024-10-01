@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -6,7 +8,7 @@ class TashkilController extends GetxController {
   
   var tashkilText = ''.obs;
   // To store ordered lines from the API
-  var _tashkilResults = <int, String>{}; 
+  final _tashkilResults = <int, String>{}; 
 
   // Method to fetch Tashkil text (supporting multiple lines)
   Future<void> fetchTashkil(String text) async {
@@ -25,7 +27,6 @@ class TashkilController extends GetxController {
         // Extract the result and order
         String result = data['result'];
         if (result == ' Zerrouki Taha') {
-          print('Invalid text');
           tashkilText.value=" أدْخِل النَّصّ الْمُرَاد تَشْكِيلهُ";
           return;
         }
@@ -40,10 +41,10 @@ class TashkilController extends GetxController {
         }
 
       } else {
-        print('Failed to load Tashkil text');
+        dev.log('Failed to load Tashkil text');
       }
     } catch (e) {
-      print('Error: $e');
+      dev.log('Error: $e');
       throw Exception('Failed to fetch Tashkil text');
     }
   }
@@ -56,6 +57,6 @@ class TashkilController extends GetxController {
   }
 
   void clearText() {
-    tashkilText.value = ""; // Clear the text
+    tashkilText.value = ""; 
   }
 }
