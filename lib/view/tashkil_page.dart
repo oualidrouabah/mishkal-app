@@ -24,16 +24,6 @@ class TashkilPage extends StatelessWidget {
           'تشكيل النص',
           style: TextStyle(fontFamily: 'ArabicFont', fontSize: screenSize.width * 0.05),
         ),
-        actions: [
-          Obx(() => IconButton(
-                icon: Icon(themeController.isDarkMode.value
-                    ? Icons.light_mode
-                    : Icons.dark_mode),
-                onPressed: () {
-                  themeController.toggleTheme();
-                },
-              )),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
