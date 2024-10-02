@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mishkal/view/about_screen.dart';
 import 'package:mishkal/view/history_screen.dart';
 import 'package:mishkal/view/tashkil_page.dart';
 
@@ -61,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                           text: "حول التطبيق", 
                           height:screenSize.height *0.2, 
                           width: screenSize.width *0.46, 
-                          onPressed: () {},
+                          onPressed: () => Get.to(()=>AboutPage()),
                         ),
                         StyledButton(
                           icon: Icons.history, 

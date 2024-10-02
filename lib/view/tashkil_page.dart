@@ -65,7 +65,6 @@ class TashkilPage extends StatelessWidget {
                       textAlign: TextAlign.right,
                       _buildTextWithTashkil(
                         tashkilController.tashkilText.value,
-                        Theme.of(context).primaryColor,  
                         ThemeController.clearButtonColor,                     
                         screenSize.width * 0.08,         
                       ),
@@ -103,7 +102,7 @@ class TashkilPage extends StatelessWidget {
   }
 
   // Helper function to build TextSpan with different colors for base text and tashkil
-  TextSpan _buildTextWithTashkil(String text, Color normalColor, Color tashkilColor, double fontSize) {
+  TextSpan _buildTextWithTashkil(String text, Color tashkilColor, double fontSize) {
     List<TextSpan> spans = [];
     final tashkilRegex = RegExp(r'[\u064B-\u065F]'); // Regex for tashkil characters
 
@@ -115,7 +114,7 @@ class TashkilPage extends StatelessWidget {
           TextSpan(
             text: char,
             style: TextStyle(
-              color: tashkilColor, // Color for tashkil
+              color: tashkilColor,
               fontSize: fontSize,
               fontFamily: 'ArabicFont',
             ),
@@ -127,7 +126,6 @@ class TashkilPage extends StatelessWidget {
           TextSpan(
             text: char,
             style: TextStyle(
-              color: normalColor, // Color for normal text
               fontSize: fontSize,
               fontFamily: 'ArabicFont',
             ),
