@@ -12,3 +12,9 @@ This is the main screen, providing access to all the key features.
 ### Tashkil Process
 The screen where users can input text and add tashkil to it.
 ![Tashkil Screen](path/to/tashkil_screen.png)
+
+## Features
+
+- **Tashkil Support**: Automatically adds diacritics to Arabic texts for improved readability.
+- **Intuitive UI**: User-friendly interface designed to simplify interaction, with full Arabic support.
+- **Mobile Optimized**: The application adapts perfectly to mobile devices, providing a seamless experience.
