@@ -7,11 +7,11 @@ Mishkal is a mobile application developed using Flutter, based on the [Mishkal w
 
 ### Home Screen
 This is the main screen, providing access to all the key features.
-![Home Screen](path/to/home_screen.png)
+![Home Screen](screens\main.png)
 
 ### Tashkil Process
 The screen where users can input text and add tashkil to it.
-![Tashkil Screen](path/to/tashkil_screen.png)
+![Tashkil Screen](screens\tashkil.png)
 
 ## Features
 
