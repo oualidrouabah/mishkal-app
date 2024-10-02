@@ -35,7 +35,6 @@ The screen where users can input text and add tashkil to it.
     ```bash
     flutter run
 
-
 ## Credits
 
 This mobile application is based on the original Mishkal project created by [linuxscout](https://github.com/linuxscout). The project uses the Mishkal API for the Arabic diacritization process.
