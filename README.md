@@ -18,3 +18,13 @@ The screen where users can input text and add tashkil to it.
 - **Tashkil Support**: Automatically adds diacritics to Arabic texts for improved readability.
 - **Intuitive UI**: User-friendly interface designed to simplify interaction, with full Arabic support.
 - **Mobile Optimized**: The application adapts perfectly to mobile devices, providing a seamless experience.
+
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/oualidrouabah/mishkal-app.git
+2. Navigate to the project directory:
+    ```bash
+    cd mishkal-app
