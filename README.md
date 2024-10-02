@@ -31,3 +31,8 @@ The screen where users can input text and add tashkil to it.
 3. Install dependencies:
     ```bash
     flutter pub get
+4. Run the app:
+    ```bash
+    flutter run
+
+
