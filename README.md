@@ -28,3 +28,6 @@ The screen where users can input text and add tashkil to it.
 2. Navigate to the project directory:
     ```bash
     cd mishkal-app
+3. Install dependencies:
+    ```bash
+    flutter pub get
