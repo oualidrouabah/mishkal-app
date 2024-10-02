@@ -12,6 +12,7 @@ This is the main screen, providing access to all the key features.
 
 ### Tashkil Process
 The screen where users can input text and add tashkil to it.
+
 <img src="screens\tashkil.png" alt="Tashkil Screen" width="200" height="400"/>
 
 ## Features
