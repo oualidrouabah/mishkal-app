@@ -52,8 +52,9 @@ class AboutPage extends StatelessWidget {
               ),
               SizedBox(height: 24),
               GestureDetector(
-                onTap: () {
-                  aboutController.openWebsite("https://tahadz.com/mishkal");
+                onTap: () async{
+                  print("open website");
+                  await aboutController.openWebsite("https://tahadz.com/mishkal");
                 },
                 child: Text(
                   'موقع مشكال',

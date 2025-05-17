@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:mishkal/controller/theme_controller.dart';
 import 'package:mishkal/view/about_screen.dart';
 import 'package:mishkal/view/history_screen.dart';
 import 'package:mishkal/view/tashkil_page.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,129 +15,280 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final ThemeController themeController = Get.put(ThemeController());
+
+  
+
   @override
   Widget build(BuildContext context) {
-    var screenSize = Get.size;
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(5),
-        child: SafeArea(
-          child: Center(
-            // ignore: sized_box_for_whitespace
-            child: Container(
-              height: screenSize.height*0.7,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: screenSize.height * 0.2,
-                    child: Image.asset(
-                      'assets/mishkalphoto.png',
-                      fit: BoxFit.fill,
+    final Size screenSize = Get.size;
+    return SafeArea(
+      child: Scaffold(
+        key: _scaffoldKey,
+        drawer: cstmDrawer(),
+        body: Container(
+          padding: EdgeInsets.all(5),
+          height: screenSize.height,
+          width: screenSize.width,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    RotatedBox(
+                      quarterTurns: 135,
+                      child: IconButton(
+                        icon: const Icon(Icons.bar_chart_rounded),
+                        color: Theme.of(context).primaryColor,
+                        iconSize: screenSize.width * 0.08,
+                        onPressed: () {
+                          _scaffoldKey.currentState?.openDrawer();
+                        },
+                      ),
+                    )
+                  ],
+                ),
+                /*SizedBox(
+                  height: screenSize.height * 0.2,
+                  child: Image.asset(
+                    'assets/mishkalphoto.png',
+                    fit: BoxFit.fill,
+                  ),
+                ),*/
+                 Column(
+                  children: [
+                    Image.asset(
+                      'assets/dama.png',
+                      width: 150,
+                      height: 150,
                     ),
-                  ),
-                  SizedBox(
-                    height:screenSize.height * 0.05,
-                  ),
-                  Container(
-                    //color: Colors.yellow ,	
-                    margin: const EdgeInsets.only(right: 5, left: 5),
-                    child: StyledButton(
-                      icon: Icons.article_outlined, 
-                      text: "تشكيل النص", 
-                      height:screenSize. height*0.2, 
-                      width:screenSize. width, 
-                      onPressed: ()=> Get.to(()=>TashkilPage()),
+                    
+                    Text(
+                      "مِشْكَالٌ النُّصُوصُ الْعَرَبِيَّةِ",
+                      style: TextStyle(
+                        fontFamily: 'AmiriQuranColored',
+                        fontSize: screenSize.width*0.11,
+                      ),
                     ),
-                  ),
-                  Container(
-                    //color: Colors.red ,
-                    margin: const EdgeInsets.only(right: 5, left: 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        StyledButton(
-                          icon: Icons.info_outline, 
-                          text: "حول التطبيق", 
-                          height:screenSize.height *0.2, 
-                          width: screenSize.width *0.46, 
-                          onPressed: () => Get.to(()=>AboutPage()),
+                  ],
+                ),
+                SizedBox(
+                  height: screenSize.height * 0.05,
+                ),
+                StaggeredGrid.count(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 10.0,
+                  children: [
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 2,
+                      mainAxisCellCount: 1,
+                      child: IconButton(
+                        onPressed: () => Get.to(() => TashkilPage()),
+                        icon: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.article,
+                              size: screenSize.width * 0.13,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "تشكيل النص",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: screenSize.width * 0.08,
+                                  fontFamily: 'ArabicFont'),
+                            ),
+                          ],
                         ),
-                        StyledButton(
-                          icon: Icons.history, 
-                          text: "سجل", 
-                          height: screenSize.height *0.2, 
-                          width: screenSize.width *0.46, 
-                          onPressed: ()=>Get.to(()=>HistoryScreen()),
+                        style: ButtonStyle(
+                          padding: WidgetStateProperty.all(
+                              const EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 5, right: 5)),
+                          backgroundColor: WidgetStateProperty.all(
+                              Theme.of(context).primaryColor),
+                          shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40))),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 1,
+                      mainAxisCellCount: 1,
+                      child: IconButton(
+                        onPressed: () => Get.to(() => HistoryScreen()),
+                        icon: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.history_edu_outlined,
+                              size: screenSize.width * 0.13,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "سجل",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: screenSize.width * 0.08,
+                                  fontFamily: 'ArabicFont'),
+                            ),
+                          ],
+                        ),
+                        style: ButtonStyle(
+                          padding: WidgetStateProperty.all(
+                              const EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 5, right: 5)),
+                          backgroundColor: WidgetStateProperty.all(
+                              Theme.of(context).primaryColor),
+                          shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40))),
+                        ),
+                      ),
+                    ),
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 1,
+                      mainAxisCellCount: 1,
+                      child: IconButton(
+                        onPressed: () => Get.to(() => AboutPage()),
+                        icon: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.info_outline,
+                              size: screenSize.width * 0.13,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "حول التطبيق",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: screenSize.width * 0.08,
+                                  fontFamily: 'ArabicFont'),
+                            ),
+                          ],
+                        ),
+                        style: ButtonStyle(
+                          padding: WidgetStateProperty.all(
+                              const EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 5, right: 5)),
+                          backgroundColor: WidgetStateProperty.all(
+                              Theme.of(context).primaryColor),
+                          shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40))),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          )
+          ),
         ),
       ),
     );
   }
-}
-
-class StyledButton extends StatelessWidget {
-  final IconData? icon;
-  final String? text;
-  final double? height;
-  final double? width;
-  final VoidCallback? onPressed;
-
-  const StyledButton(
-      {super.key,
-      this.icon,
-      required this.text,
-      required this.height,
-      required this.width,
-      required this.onPressed}
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onPressed,
-      icon: (icon!=null)? Column(
-        children: [
-          Icon(
-            icon,
-            size: height! * 0.4,
-            color: Colors.white,
-          
+  Drawer cstmDrawer() {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.all(5),
+        children: <Widget>[
+          Column(
+            children: [
+              Image.asset(
+                'assets/dama.png',
+                width: 100,
+                height: 100,
+              ),
+              SizedBox(height: 10),
+              Text(
+                "مِشْكَالٌ النُّصُوصُ الْعَرَبِيَّةِ",
+                style: TextStyle(
+                  fontFamily: 'AmiriQuranColored',
+                  fontSize: 25,
+                ),
+              ),
+            ],
           ),
-          Text(
-            text!,
-            style: TextStyle(
-              fontSize: height! * 0.17,
-              color: Colors.white,
+          SizedBox(
+            height: 20,
+          ),
+          ListTile(
+            title: Text(
+              themeController.themeModeTitle.value,
+              style: TextStyle(fontFamily: 'ArabicFont', fontSize: 25),
+            ),
+            trailing: GestureDetector(
+              onTap: () {
+                setState(() {
+                  themeController.toggleTheme();
+                  themeController.toggleThemeTitle();
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                width: 80,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Theme.of(context).primaryColor,
+                ),
+                child: Stack(
+                  children: [
+                    AnimatedPositioned(
+                      duration: Duration(milliseconds: 300),
+                      curve: Curves.easeIn,
+                      top: 5.0,
+                      left: themeController.isDarkMode.value ? 45.0 : 5.0,
+                      right: themeController.isDarkMode.value ? 5.0 : 45.0,
+                      child: AnimatedSwitcher(
+                        duration: Duration(milliseconds: 300),
+                        transitionBuilder: (child, animation) {
+                          return RotationTransition(
+                            turns: child.key == ValueKey('sun')
+                                ? Tween<double>(begin: 0.75, end: 1)
+                                    .animate(animation)
+                                : Tween<double>(begin: 0.25, end: 1)
+                                    .animate(animation),
+                            child: child,
+                          );
+                        },
+                        child: themeController.isDarkMode.value
+                            ? Icon(
+                                Icons.nightlight_round,
+                                key: ValueKey('moon'),
+                                color: Colors.white,
+                                size: 30,
+                              )
+                            : Icon(
+                                Icons.wb_sunny,
+                                key: ValueKey('sun'),
+                                color: Colors.yellow,
+                                size: 30,
+                              ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],
-      ): Text(
-        text!,
-        style: TextStyle(
-          fontSize: width! * 0.2,
-          color: Colors.white,
-        ),
       ),
-      style: ButtonStyle(
-          fixedSize: WidgetStatePropertyAll(Size(width!, height!)),
-          padding: WidgetStateProperty.all(
-              const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10)),
-          backgroundColor:
-              WidgetStateProperty.all(Theme.of(context).primaryColor),
-          shape: WidgetStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(height!/4))),),
     );
   }
 }

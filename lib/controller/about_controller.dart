@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutController extends GetxController {
-   final String title = 'تطبيق مشكال للجوال';
+  final String title = 'تطبيق مشكال للجوال';
   final String description = '''
 مشكال هو تطبيق جوال تم تطويره باستخدام فلاتر، وهو مبني على موقع مشكال. يهدف إلى إضافة التشكيل للنصوص العربية.
 ''';
@@ -13,27 +13,28 @@ class AboutController extends GetxController {
 - محسّن للأجهزة المحمولة: يتكيف التطبيق بشكل مثالي مع الأجهزة المحمولة لتوفير تجربة سلسة.
 ''';
 
- final String credits = '''
+  final String credits = '''
 هذا التطبيق مبني على مشروع مشكال الأصلي الذي أنشأه الدكتور طه زروقي. يستخدم المشروع واجهة برمجة تطبيقات مشكال لعملية تشكيل النصوص العربية.
 للاطلاع على مشروعه على GitHub، يمكنك زيارة: https://github.com/linuxscout
 ''';
 
-  void openWebsite(website) {
-    _launchURL(website);
-  }
-
-  Future<void> _launchURL(url) async {
+  openWebsite(String website) async{
+    final Uri uri = Uri.parse(website);
+    print("open web function");
     try {
-      if (await canLaunchUrl(Uri.parse(url))) {
-        await launchUrl(Uri.parse(url));
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
       } else {
-        Get.snackbar('خطأ', 'لا يمكن فتح $url');
-        
+        Get.snackbar('خطأ', 'لا يمكن فتح $uri');
       }
     } catch (e) {
       Get.snackbar('خطأ', 'حدث خطأ: $e');
-      print(e);
+      print('Error launching URL: $e');
     }
   }
+  
+
+  Future<void> _launchURL(String url) async {}
+    
 
 }

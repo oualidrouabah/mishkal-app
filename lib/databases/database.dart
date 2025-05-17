@@ -3,15 +3,15 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper._internal();
+class MyDatabase {
+  static final MyDatabase _instance = MyDatabase._internal();
   static Database? _database;
 
-  factory DatabaseHelper() {
+  factory MyDatabase() {
     return _instance;
   }
 
-  DatabaseHelper._internal();
+  MyDatabase._internal();
 
   Future<Database> get database async {
     if (_database != null) return _database!;

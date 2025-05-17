@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 
 class MishkalTheme {
   static final Color primaryColor = Color(0xFF00C4C7);
-  static final Color secondaryColor = Color(0xFFE94A4A); // Red accents
+  static final Color secondaryColor = Color(0xFFE94A4A);
   static final Color lightBackgroundColor = Colors.white;
   static final Color darkBackgroundColor = Color(0xFF121212);
+  static final Color draweBackgroundColorLight = Color.fromARGB(255, 218, 252, 253); 
+  static final Color draweBackgroundColorDark = Color(0xFF121212);
+  static final Color clearButtonColor = Color(0xFFE94A4A);
 
 
   static ThemeData lightTheme = ThemeData(
+    
     brightness: Brightness.light,
     primaryColor: primaryColor,
     scaffoldBackgroundColor: lightBackgroundColor,
@@ -17,6 +21,9 @@ class MishkalTheme {
     colorScheme: ColorScheme.light(
       primary: primaryColor,
       secondary: secondaryColor,
+    ),
+    drawerTheme: DrawerThemeData(
+      backgroundColor: draweBackgroundColorLight,
     ),
     textTheme: TextTheme(
       titleLarge: TextStyle(
@@ -60,6 +67,9 @@ class MishkalTheme {
     colorScheme: ColorScheme.dark(
       primary: primaryColor,
       secondary: secondaryColor,
+    ),
+    drawerTheme: DrawerThemeData(
+      backgroundColor: draweBackgroundColorDark,
     ),
     textTheme: TextTheme(
       titleLarge: TextStyle(

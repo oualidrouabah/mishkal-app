@@ -5,7 +5,7 @@ import 'dart:developer' as dev;
 
 class DatabaseController extends GetxController {
   var history = <Map<String, String>>[].obs; // Keep the type as String
-  final DatabaseHelper _databaseHelper = DatabaseHelper();
+  final MyDatabase _database = MyDatabase();
 
   @override
   void onInit() {
@@ -21,7 +21,7 @@ class DatabaseController extends GetxController {
         'original_text': originalText,
         'tashkil_text': tashkilText,
       });
-      _databaseHelper.insertText(originalText, tashkilText);
+      _database.insertText(originalText, tashkilText);
     } else {
       // Optionally, you can show a message indicating that the text already exists
       dev.log("The original text already exists in the history.");
@@ -29,7 +29,7 @@ class DatabaseController extends GetxController {
   }
 
   Future<void> loadHistory() async {
-    final List<Map<String, dynamic>> maps = await _databaseHelper.getHistory();
+    final List<Map<String, dynamic>> maps = await _database.getHistory();
       history.value = maps.map((map) => {
         'original_text': map['original_text'] as String, // Cast to String
         'tashkil_text': map['tashkil_text'] as String,   // Cast to String
@@ -40,6 +40,6 @@ class DatabaseController extends GetxController {
     // Remove from the in-memory list
     history.removeWhere((entry) => entry['original_text'] == originalText);
     // Remove from the database
-    _databaseHelper.deleteText(originalText);
+    _database.deleteText(originalText);
   }
 }

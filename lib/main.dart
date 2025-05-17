@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mishkal/view/splash_screen.dart';
-import 'package:mishkal/view/theme.dart';
+import 'package:mishkal/theme.dart';
 
 
 

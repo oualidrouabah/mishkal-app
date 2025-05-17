@@ -22,14 +22,14 @@ class HistoryScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             final entry = _controller.history[index];
             return Container(
-              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16), // Margin around each box
-              padding: const EdgeInsets.all(12), // Padding inside the box
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16), 
+              padding: const EdgeInsets.all(12), 
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor, // Light color for the box
-                borderRadius: BorderRadius.circular(10), // Rounded corners
+                color: Theme.of(context).primaryColor, 
+                borderRadius: BorderRadius.circular(10), 
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1), // Shadow for depth
+                    color: Colors.grey.withOpacity(0.1),
                     spreadRadius: 2,
                     blurRadius: 5,
                     offset: Offset(0, 3),
@@ -41,7 +41,6 @@ class HistoryScreen extends StatelessWidget {
                 title: Text(entry['original_text']!),
                 subtitle: Text(entry['tashkil_text']!),
                 onTap: () {
-                  // Navigate to the detail screen when tapped
                   _showDetailDialog(entry);
                 },
                 trailing: IconButton(

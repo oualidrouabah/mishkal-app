@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mishkal/controller/database_controller.dart';
 import 'package:mishkal/controller/tashkil_controller.dart';
+import 'package:mishkal/theme.dart';
 import '../controller/theme_controller.dart';
 
 
@@ -27,7 +28,7 @@ class TashkilPage extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.delete_forever_outlined),
-            color: ThemeController.clearButtonColor, 
+            color: MishkalTheme.clearButtonColor, 
             onPressed: () {
               textInputController.clear(); 
               tashkilController.clearText();
@@ -44,7 +45,7 @@ class TashkilPage extends StatelessWidget {
               height: screenSize.height * 0.3,
               child: TextField(
                 controller: textInputController,
-                textAlign: TextAlign.right, // Align text for Arabic
+                textAlign: TextAlign.right, 
                 maxLines: null,
                 expands: true,
                 style: TextStyle(fontSize: screenSize.width * 0.05, fontFamily: 'ArabicFont'),
@@ -65,7 +66,7 @@ class TashkilPage extends StatelessWidget {
                       textAlign: TextAlign.right,
                       _buildTextWithTashkil(
                         tashkilController.tashkilText.value,
-                        ThemeController.clearButtonColor,                     
+                        MishkalTheme.secondaryColor,                     
                         screenSize.width * 0.08,         
                       ),
                     ),
